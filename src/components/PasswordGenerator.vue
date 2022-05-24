@@ -75,7 +75,7 @@ export default {
         </div>
         <div>
             <label for="length"> Length </label>
-            <input type="number" name="length" id="length" :value="passLength" />
+            <input type="number" name="length" id="length" v-model="passLength" />
         </div>
         <div>
             <button @click="generatePassword()">Gernerate</button>
