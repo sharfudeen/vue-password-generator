@@ -8,7 +8,7 @@ export default {
             uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
             lowercase: "abcdefghijklmnopqrstuvwxyz",
             numbers: "0123456789",
-            specialCharacters: "!@#$%^&*()_+~`|}{[]:;?><,./-=",
+            specialCharacters: "!@#$%^&*()_+~`|}{[]:;?><,./\\-=\"'",
             passLength: 12,
             isUppercase: true,
             isLowercase: true,
@@ -19,10 +19,6 @@ export default {
     methods: {
         generatePassword() {
             this.generatedPassword = '';
-            let len = this.getString.length;
-            for (let i = 0; i < this.passLength; i++) {
-                this.generatedPassword += this.getString.charAt(Math.random() * len);
-            }
         },
         copy() {
             navigator.clipboard.writeText(this.generatedPassword);
@@ -44,6 +40,14 @@ export default {
                 str += this.numbers;
             }
             return str;
+        },
+        changePassword() {
+            this.generatedPassword = '';
+            let len = this.getString.length;
+            for (let i = 0; i < this.passLength; i++) {
+                this.generatedPassword += this.getString.charAt(Math.random() * len);
+            }
+            return this.generatedPassword;
         }
     }
 }
@@ -53,7 +57,7 @@ export default {
     <div>
         <h1>Password Generator</h1>
         <div>
-            <input name="generatedPassword" id="generatedPassword" :value="generatedPassword"
+            <input name="generatedPassword" id="generatedPassword" :value="changePassword"
                 placeholder="Your random password will appear here" />
             <button type="button" @click="copy">Copy</button>
         </div>
